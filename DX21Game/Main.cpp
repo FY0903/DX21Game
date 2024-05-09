@@ -1,7 +1,9 @@
+/**
+* @file Main.cpp
+*/
 #include <Windows.h>
-#include <string.h>
-#include <stdio.h>
 
+#include "Game.h"
 #include "Dialog.h"
 
 //=== 定数・マクロ定義 ===
@@ -66,6 +68,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	ShowWindow(hWnd, nCmdshow);
 	UpdateWindow(hWnd);
 
+	// ゲームの初期化処理
+	if (!InitGame())
+	{
+		MessageBox(hWnd, "ゲームの初期化に失敗しました", "エラー", MB_OK);
+		return 0;
+	}
+
 	// メッセージループ
 	MSG message;
 	while (1)
@@ -82,7 +91,14 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 				DispatchMessage(&message);
 			}
 		}
+		else // メッセージが何もないときにゲームの処理を行う
+		{
+
+		}
 	}
+
+	// 終了処理
+	UninitGame();
 
 #endif
 
