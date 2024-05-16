@@ -9,6 +9,7 @@
 //=== 定数・マクロ定義 ===
 //#define DX0425
 #define DX0509
+#define DX0516
 
 //=== プロトタイプ宣言 ===
 #ifdef DX0509
@@ -56,7 +57,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		wcex.lpszClassName, "タイトル",	// タイトルバーに表示する文字
 		WS_CAPTION | WS_SYSMENU,		// ウィンドウの見た目
 		CW_USEDEFAULT, CW_USEDEFAULT,	// ウィンドウの表示位置
-		960, 540,						// ウィンドウの大きさ
+		1280, 720,						// ウィンドウの大きさ
 		HWND_DESKTOP, NULL, hInstance, NULL);
 	if (hWnd == NULL)
 	{
@@ -69,7 +70,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	UpdateWindow(hWnd);
 
 	// ゲームの初期化処理
-	if (!InitGame())
+	if (!InitGame(hWnd))
 	{
 		MessageBox(hWnd, "ゲームの初期化に失敗しました", "エラー", MB_OK);
 		return 0;
@@ -93,7 +94,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		}
 		else // メッセージが何もないときにゲームの処理を行う
 		{
-
+			UpdateGame();
+			DrawGame();
 		}
 	}
 

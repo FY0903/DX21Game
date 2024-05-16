@@ -1,3 +1,6 @@
+/**
+* @file Dialog.h
+*/
 #pragma once
 
 /**

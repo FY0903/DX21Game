@@ -1,3 +1,6 @@
+/**
+* @file Dialog.cpp
+*/
 #include "Dialog.h"
 #include <Windows.h>
 
