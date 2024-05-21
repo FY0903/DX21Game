@@ -13,4 +13,7 @@ void UninitDirectX();
 void BeginDrawDirectX();
 void EndDrawDirectX();
 
+ID3D11Device* GetDevice();
+ID3D11DeviceContext* GetContext();
+
 #endif

@@ -135,11 +135,15 @@
     <ClCompile Include="DirectX.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="SpriteDrawer.cpp" />
+    <ClCompile Include="VertexBuffer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Dialog.h" />
     <ClInclude Include="DirectX.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="SpriteDrawer.h" />
+    <ClInclude Include="VertexBuffer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

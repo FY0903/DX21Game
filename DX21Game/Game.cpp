@@ -3,6 +3,11 @@
 */
 #include "Game.h"
 #include "DirectX.h"
+#include "SpriteDrawer.h"
+#include "VertexBuffer.h"
+
+//=== グローバル宣言 ===
+ID3D11Buffer* g_pVtxBuf;
 
 bool InitGame(HWND hWnd)
 {
@@ -13,11 +18,19 @@ bool InitGame(HWND hWnd)
 		MessageBox(hWnd, "DirectX初期化失敗", "エラー", S_OK);
 		return false;
 	}
+
+	// スプライト描画サポートの初期化
+	InitSpriteDrawer(GetDevice(), GetContext(), 1280, 720);
+
+	Vertex vtx[] = { {{10.0f, 10.0f, 10.0f}, {0.0f, 0.0f}}, {{20.0f, 10.0f, 10.0f}, {0.0f, 0.0f}}, {{10.0f, 2.0f, 10.0f}, {0.0f, 0.0f}}, {{20.0f, 20.0f, 10.0f}, {0.0f, 0.0f}} };
+	g_pVtxBuf = CreateVertexBuffer(vtx, 4);
+
 	return true;
 }
 
 void UninitGame()
 {
+	UninitSpriteDrawer();
 	UninitDirectX();
 }
 
@@ -29,5 +42,6 @@ void UpdateGame()
 void DrawGame()
 {
 	BeginDrawDirectX();
+	DrawSprite(g_pVtxBuf);
 	EndDrawDirectX();
 }

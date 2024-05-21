@@ -12,13 +12,9 @@ IDXGISwapChain* g_pSwapChain;
 // フレームバッファそのもの（レンダーターゲットビューと呼ばれる）
 ID3D11RenderTargetView* g_pRTV;
 
-// 色指定
-float g_color[4];
-
 HRESULT InitDirectX(HWND hWnd, UINT width, UINT height)
 {
 	bool fullScreen = false;
-	g_color[3] = 1.0f;
 
 	// HRESULT...DirectXの処理結果を表すデータ
 	// S_OKはプログラムの成功を表す
@@ -73,6 +69,16 @@ HRESULT InitDirectX(HWND hWnd, UINT width, UINT height)
 		hr = g_pDevice->CreateRenderTargetView(pBackBuffer, NULL, &g_pRTV);
 		g_pContext->OMSetRenderTargets(1, &g_pRTV, nullptr);	// GPUの出力先設定
 	}
+
+	D3D11_VIEWPORT vp;
+	ZeroMemory(&vp, sizeof(vp));
+	vp.TopLeftX = 0.0f;
+	vp.TopLeftY = 0.0f;
+	vp.Width = width;
+	vp.Height = height;
+	vp.MinDepth = 0.0f;
+	vp.MaxDepth = 1.0f;
+	g_pContext->RSSetViewports(1, &vp);
 }
 
 void UninitDirectX()
@@ -87,21 +93,23 @@ void UninitDirectX()
 
 void BeginDrawDirectX()
 {
-	for (int i = 0; i < 3; i++)
-	{
-		g_color[0] += 0.01f;
-		g_color[1] += 0.01f;
-		g_color[2] += 0.01f;
-		if (g_color[i] > 1.0f) g_color[i] = 0.0f;
-	}
-
 	// 描画開始時に画面をクリア
-	//float color[4] = { 0.8f, 0.9f, 1.0f, 1.0f };
-	g_pContext->ClearRenderTargetView(g_pRTV, g_color);
+	float color[4] = { 0.8f, 0.9f, 0.5f, 1.0f };
+	g_pContext->ClearRenderTargetView(g_pRTV, color);
 }
 
 void EndDrawDirectX()
 {
 	// 描画完了時に画面へ出力
 	g_pSwapChain->Present(0, 0);
+}
+
+ID3D11Device* GetDevice()
+{
+	return g_pDevice;
+}
+
+ID3D11DeviceContext* GetContext()
+{
+	return g_pContext;
 }
