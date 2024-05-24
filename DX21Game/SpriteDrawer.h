@@ -5,7 +5,7 @@
 
 void InitSpriteDrawer(ID3D11Device* pDevice, ID3D11DeviceContext* pContext, UINT width, UINT height);
 void UninitSpriteDrawer();
-void DrawSprite(ID3D11Buffer* pSprite);
+void DrawSprite(ID3D11Buffer* pSprite, UINT vtxSize);
 
 void SetSpritePos(float x, float y);
 void SetSpriteAngle(float rad);

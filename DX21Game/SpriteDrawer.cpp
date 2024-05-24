@@ -28,32 +28,28 @@ ID3D11InputLayout* g_pSpriteIL;
 ID3D11VertexShader* g_pSpriteVS;
 ID3D11PixelShader* g_pSpritePS;
 ID3D11Buffer* g_pSpriteBuffer;
+ID3D11RasterizerState* g_pSpriteRasterizer;
+ID3D11SamplerState* g_pSpriteSampler;
 
 
 
-
-
-
-
-
-void DrawSprite(ID3D11Buffer* pSprite)
+void DrawSprite(ID3D11Buffer* pSprite, UINT vtxSize)
 {
 	D3D11_BUFFER_DESC desc;
 	pSprite->GetDesc(&desc);
-	UINT stride = desc.StructureByteStride;
-	UINT num = desc.ByteWidth / stride;
+	UINT num = desc.ByteWidth / vtxSize;
 	UINT offset = 0;
 
 	g_pSpriteContext->IASetInputLayout(g_pSpriteIL);
+	g_pSpriteContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
+	g_pSpriteContext->IASetVertexBuffers(0, 1, &pSprite, &vtxSize, &offset);
 	g_pSpriteContext->VSSetShader(g_pSpriteVS, NULL, 0);
+	g_pSpriteContext->PSSetShader(g_pSpritePS, NULL, 0);
 	g_pSpriteContext->UpdateSubresource(g_pSpriteBuffer, 0, nullptr, &g_SpriteParam, 0, 0);
 	g_pSpriteContext->VSSetConstantBuffers(0, 1, &g_pSpriteBuffer);
 	g_pSpriteContext->PSSetShaderResources(0, 1, &g_pSpriteTexture);
 
-	g_pSpriteContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
-	g_pSpriteContext->IASetVertexBuffers(0, 1, &pSprite, &stride, &offset);
 	g_pSpriteContext->Draw(num, 0);
-
 }
 
 void SetSpritePos(float x, float y)
@@ -119,9 +115,13 @@ VS_OUT main(VS_IN vin) {
 	VS_OUT vout;
 	vout.pos = float4(vin.pos, 1.0f);
 	vout.pos.xy *= scale;
-
+	float x = vout.pos.x * cos(rad) - vout.pos.y * sin(rad);
+	float y = vout.pos.x * sin(rad) + vout.pos.y * cos(rad);
+	vout.pos.x = x;
+	vout.pos.y = y;
 	vout.pos.xy += pos;
 	vout.pos.xy /= screen;
+	vout.pos.y = -vout.pos.y;
 	vout.uv = vin.uv;
 	vout.uv *= uvScale;
 	vout.uv += uvPos;
@@ -137,9 +137,8 @@ struct PS_IN {
 Texture2D tex : register(t0);
 SamplerState samp : register(s0);
 float4 main(PS_IN pin) : SV_TARGET {
-	return tex.Sample(samp, pin.uv) * pin.color;
+	return pin.color;
 })EOT";
-
 
 	g_SpriteParam.pos = { 0.0f, 0.0f };
 	g_SpriteParam.scale = { 1.0f, 1.0f };
@@ -152,13 +151,38 @@ float4 main(PS_IN pin) : SV_TARGET {
 	g_pSpriteContext = pContext;
 
 	ShaderCompile(pDevice, VS, PS);
+
+
+	HRESULT hr = E_FAIL;
+	// カリング設定
+	D3D11_RASTERIZER_DESC rasterizer = {};
+	rasterizer.CullMode = D3D11_CULL_NONE;
+	rasterizer.FillMode = D3D11_FILL_SOLID;
+	rasterizer.FrontCounterClockwise = true;
+	hr = pDevice->CreateRasterizerState(&rasterizer, &g_pSpriteRasterizer);
+	if (FAILED(hr)) { return; }
+	g_pSpriteContext->RSSetState(g_pSpriteRasterizer);
+
+	// サンプラー
+	D3D11_SAMPLER_DESC samplerDesc = {};
+	samplerDesc.Filter = D3D11_FILTER_MIN_MAG_MIP_POINT;
+	samplerDesc.AddressU = D3D11_TEXTURE_ADDRESS_CLAMP;
+	samplerDesc.AddressV = D3D11_TEXTURE_ADDRESS_CLAMP;
+	samplerDesc.AddressW = D3D11_TEXTURE_ADDRESS_CLAMP;
+	hr = pDevice->CreateSamplerState(&samplerDesc, &g_pSpriteSampler);
+	if (FAILED(hr)) { return; }
+	g_pSpriteContext->PSSetSamplers(0, 1, &g_pSpriteSampler);
 }
+
 void UninitSpriteDrawer()
 {
-	if(g_pSpriteContext) g_pSpriteContext->Release();
 	if(g_pSpriteWhiteTex) g_pSpriteWhiteTex->Release();
 	if(g_pSpriteVS) g_pSpriteVS->Release();
 	if(g_pSpritePS) g_pSpritePS->Release();
+	if (g_pSpriteIL) g_pSpriteIL->Release();
+	if (g_pSpriteBuffer) g_pSpriteBuffer->Release();
+	if(g_pSpriteRasterizer) g_pSpriteRasterizer->Release();
+	if(g_pSpriteSampler) g_pSpriteSampler->Release();
 }
 
 

@@ -22,7 +22,12 @@ bool InitGame(HWND hWnd)
 	// スプライト描画サポートの初期化
 	InitSpriteDrawer(GetDevice(), GetContext(), 1280, 720);
 
-	Vertex vtx[] = { {{10.0f, 10.0f, 10.0f}, {0.0f, 0.0f}}, {{20.0f, 10.0f, 10.0f}, {0.0f, 0.0f}}, {{10.0f, 2.0f, 10.0f}, {0.0f, 0.0f}}, {{20.0f, 20.0f, 10.0f}, {0.0f, 0.0f}} };
+	// 頂点バッファの作成
+	Vertex vtx[] = { 
+		{{-100.0f, -100.0f, 0.0f}, {0.0f, 0.0f}}, 
+		{{-100.0f, 100.0f, 0.0f}, {0.0f, 1.0f}}, 
+		{{100.0f, -100.0f, 0.0f}, {1.0f, 0.0f}}, 
+		{{100.0f, 100.0f, 0.0f}, {1.0f, 1.0f}} };
 	g_pVtxBuf = CreateVertexBuffer(vtx, 4);
 
 	return true;
@@ -42,6 +47,6 @@ void UpdateGame()
 void DrawGame()
 {
 	BeginDrawDirectX();
-	DrawSprite(g_pVtxBuf);
+	DrawSprite(g_pVtxBuf, sizeof(Vertex));
 	EndDrawDirectX();
 }

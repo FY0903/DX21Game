@@ -72,13 +72,15 @@ HRESULT InitDirectX(HWND hWnd, UINT width, UINT height)
 
 	D3D11_VIEWPORT vp;
 	ZeroMemory(&vp, sizeof(vp));
-	vp.TopLeftX = 0.0f;
-	vp.TopLeftY = 0.0f;
-	vp.Width = width;
-	vp.Height = height;
+	vp.TopLeftX = 0.0f;	// 表示位置x
+	vp.TopLeftY = 0.0f;	// 表示位置y
+	vp.Width = width;	// 表示する幅
+	vp.Height = height;	// 表示する高さ
 	vp.MinDepth = 0.0f;
 	vp.MaxDepth = 1.0f;
 	g_pContext->RSSetViewports(1, &vp);
+
+	return hr;
 }
 
 void UninitDirectX()
