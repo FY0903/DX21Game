@@ -12,6 +12,8 @@ IDXGISwapChain* g_pSwapChain;
 // フレームバッファそのもの（レンダーターゲットビューと呼ばれる）
 ID3D11RenderTargetView* g_pRTV;
 
+ID3D11BlendState* g_pBlendState;
+
 HRESULT InitDirectX(HWND hWnd, UINT width, UINT height)
 {
 	bool fullScreen = false;
@@ -80,6 +82,18 @@ HRESULT InitDirectX(HWND hWnd, UINT width, UINT height)
 	vp.MaxDepth = 1.0f;
 	g_pContext->RSSetViewports(1, &vp);
 
+	D3D11_BLEND_DESC blendDesc;
+	ZeroMemory(&blendDesc, sizeof(blendDesc));
+	blendDesc.RenderTarget[0].BlendEnable = TRUE;
+	blendDesc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
+	blendDesc.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
+	blendDesc.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
+	blendDesc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
+	blendDesc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;
+	blendDesc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ZERO;
+	blendDesc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
+	hr = GetDevice()->CreateBlendState(&blendDesc, &g_pBlendState);
+
 	return hr;
 }
 
@@ -98,6 +112,9 @@ void BeginDrawDirectX()
 	// 描画開始時に画面をクリア
 	float color[4] = { 0.8f, 0.9f, 0.5f, 1.0f };
 	g_pContext->ClearRenderTargetView(g_pRTV, color);
+	
+	float blendFactor[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
+	GetContext()->OMSetBlendState(g_pBlendState, blendFactor, 0xffffffff);
 }
 
 void EndDrawDirectX()

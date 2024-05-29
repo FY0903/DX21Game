@@ -137,7 +137,7 @@ struct PS_IN {
 Texture2D tex : register(t0);
 SamplerState samp : register(s0);
 float4 main(PS_IN pin) : SV_TARGET {
-	return pin.color;
+	return tex.Sample(samp, pin.uv) * pin.color;
 })EOT";
 
 	g_SpriteParam.pos = { 0.0f, 0.0f };
