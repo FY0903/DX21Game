@@ -32,6 +32,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 #endif
 
 #ifdef DX0509
+
 	// ウィンドウクラス情報の作成
 	WNDCLASSEX wcex;
 	ZeroMemory(&wcex, sizeof(wcex));
