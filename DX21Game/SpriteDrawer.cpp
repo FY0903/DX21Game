@@ -171,7 +171,7 @@ float4 main(PS_IN pin) : SV_TARGET {
 	samplerDesc.AddressW = D3D11_TEXTURE_ADDRESS_CLAMP;
 	hr = pDevice->CreateSamplerState(&samplerDesc, &g_pSpriteSampler);
 	if (FAILED(hr)) { return; }
-	g_pSpriteContext->PSSetSamplers(0, 1, &g_pSpriteSampler);
+	//g_pSpriteContext->PSSetSamplers(0, 1, &g_pSpriteSampler);
 }
 
 void UninitSpriteDrawer()

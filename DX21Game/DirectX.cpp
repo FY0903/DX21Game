@@ -14,6 +14,8 @@ ID3D11RenderTargetView* g_pRTV;
 
 ID3D11BlendState* g_pBlendState;
 
+ID3D11SamplerState* g_pSamplerState;
+
 HRESULT InitDirectX(HWND hWnd, UINT width, UINT height)
 {
 	bool fullScreen = false;
@@ -93,6 +95,16 @@ HRESULT InitDirectX(HWND hWnd, UINT width, UINT height)
 	blendDesc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ZERO;
 	blendDesc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
 	hr = GetDevice()->CreateBlendState(&blendDesc, &g_pBlendState);
+
+	D3D11_SAMPLER_DESC sampDesc;
+	ZeroMemory(&sampDesc, sizeof(D3D11_SAMPLER_DESC));
+	sampDesc.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
+	sampDesc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
+	sampDesc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
+	sampDesc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
+	hr = g_pDevice->CreateSamplerState(&sampDesc, &g_pSamplerState);
+	if (FAILED(hr)) { return hr; }
+	GetContext()->PSSetSamplers(0, 1, &g_pSamplerState);
 
 	return hr;
 }
