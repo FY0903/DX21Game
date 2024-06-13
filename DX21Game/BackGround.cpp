@@ -2,7 +2,7 @@
 #include "VertexBuffer.h"
 #include "DirectXTex/TextureLoad.h"
 #include "DirectX.h"
-#include "SpriteDrawer.h"
+#include "SpriteDrawer.h"	
 
 BackGround::BackGround() : m_pTex(nullptr), m_pVtx(nullptr), m_offsetU(0.0f)
 {

@@ -2,6 +2,10 @@
 * @file Main.cpp
 */
 #include <Windows.h>
+#include <stdio.h>
+
+// タイマーを利用するためのライブラリを追加
+#pragma comment(lib, "winmm.lib")
 
 #include "Game.h"
 #include "Dialog.h"
@@ -77,6 +81,14 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		return 0;
 	}
 
+	// FPSの初期化処理
+	timeBeginPeriod(1);	// 分解能を1msに設定
+	DWORD time = timeGetTime();    // 現在の処理時間
+	DWORD oldTime = time;        // 以前に実行した時間
+	DWORD fpsCount = 0;            // FPS値計測カウンタ
+	DWORD FPS = 0;                // 直近のFPS
+	DWORD fpsTime = time;        // FPSの計測し始め
+
 	// メッセージループ
 	MSG message;
 	while (1)
@@ -95,12 +107,38 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		}
 		else // メッセージが何もないときにゲームの処理を行う
 		{
-			UpdateGame();
-			DrawGame();
+			// FPSの確認
+			time = timeGetTime(); //現在の時間を取得
+			// ミリ秒換算で経過時間を確認
+			if (time - oldTime >= 1000 / 60)
+			{
+				UpdateGame();
+				DrawGame();
+
+				// 以前の実行時間を更新
+				oldTime = time;
+
+#if _DEBUG
+				++fpsCount;	// 処理回数をカウント
+				if (time - fpsTime >= 1000)	// 1秒経過したらFPSを計測
+				{
+					// 整数型から文字列へ変換
+					char mes[256];
+					sprintf(mes, "FPS:%d", fpsCount);
+					// FPSの表示
+					SetWindowText(hWnd, mes);
+					
+					// 次の計測の準備
+					fpsCount = 0;
+					fpsTime = time;
+				}
+#endif
+			}
 		}
 	}
 
 	// 終了処理
+	timeEndPeriod(1);	// 分解能を戻す
 	UninitGame();
 
 #endif
