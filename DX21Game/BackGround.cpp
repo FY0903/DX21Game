@@ -12,7 +12,7 @@ BackGround::BackGround() : m_pTex(nullptr), m_pVtx(nullptr), m_offsetU(0.0f)
 		{{1280.0f, -720.0f, 0.0f}, {1.0f, 0.0f}},
 		{{1280.0f, 720.0f, 0.0f}, {1.0f, 1.0f}} };
 	m_pVtx = CreateVertexBuffer(vtx, 4);
-	HRESULT hr = LoadTextureFromFile(GetDevice(), "pipo-battlebg001b.jpg", &m_pTex);
+	HRESULT hr = LoadTextureFromFile(GetDevice(), "texture/Bg3.png", &m_pTex);
 	if (FAILED(hr)) 
 	{
 		MessageBox(nullptr, "テクスチャー読み込み失敗", "エラー", S_OK);
