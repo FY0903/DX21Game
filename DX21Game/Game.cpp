@@ -10,6 +10,7 @@
 #include "field.h"
 #include "missile.h"
 #include "explotion.h"
+#include "object.h"
 
 //=== グローバル宣言 ===
 int g_frame = 0;		// フレームカウンタ
@@ -19,6 +20,7 @@ CBackGround* g_pCBackGround;
 CField* g_pCField;
 CMissile* g_pCMissile;
 CExplotion* g_pCExplotion;
+CObject* g_pCObject;
 
 bool InitGame(HWND hWnd)
 {
@@ -33,22 +35,11 @@ bool InitGame(HWND hWnd)
 	// スプライト描画サポートの初期化
 	InitSpriteDrawer(GetDevice(), GetContext(), 1280, 720);
 
-	//Vertex Obj[] = {
-	//	{{-556.8f, -301.2f, 0.0f}, {0.0f, 0.0f}},
-	//	{{-556.8f, 601.2, 0.0f}, {0.0f, 1.0f}},
-	//	{{556.8f, -301.2f, 0.0f}, {1.0f, 0.0f}},
-	//	{{556.8f, 601.2f, 0.0f}, {1.0f, 1.0f}} };
-	//g_pVtxBufObj = CreateVertexBuffer(Obj, 4);
-	//if (FAILED(LoadTextureFromFile(GetDevice(), "texture/niconico.png", &g_pTexObj)))
-	//{
-	//	MessageBox(hWnd, "テクスチャー読み込み失敗", "エラー", S_OK);
-	//	return false;
-	//}
-
 	g_pCBackGround = new CBackGround();
 	g_pCField = new CField();
 	g_pCMissile = new CMissile();
 	g_pCExplotion = new CExplotion();
+	g_pCObject = new CObject();
 
 	return true;
 }
@@ -59,6 +50,7 @@ void UninitGame()
 	delete(g_pCField);
 	delete(g_pCMissile);
 	delete(g_pCExplotion);
+	delete(g_pCObject);
 	UninitSpriteDrawer();
 	UninitDirectX();
 }
@@ -69,6 +61,7 @@ void UpdateGame()
 	
 	g_frame++;
 	
+	g_pCObject->Update();
 
 	if (!(g_animeFrame % 5))
 	{
@@ -104,12 +97,10 @@ void DrawGame()
 {
 	BeginDrawDirectX();
 
-	//SetSpriteUVScale(1.0f, 1.0f);
-	//SetSpriteUVPos(0.0f, 0.0f);
-	//SetSpriteTexture(g_pTexObj);
-	//DrawSprite(g_pVtxBufObj, sizeof(Vertex));
-
 	g_pCField->Draw();
+
+	g_pCObject->Draw();
+
 
 	if (g_frame > 300)
 	{

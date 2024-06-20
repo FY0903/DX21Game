@@ -138,6 +138,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="missile.cpp" />
+    <ClCompile Include="object.cpp" />
     <ClCompile Include="SpriteDrawer.cpp" />
     <ClCompile Include="VertexBuffer.cpp" />
   </ItemGroup>
@@ -148,6 +149,7 @@
     <ClInclude Include="DirectX.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="missile.h" />
+    <ClInclude Include="object.h" />
     <ClInclude Include="SpriteDrawer.h" />
     <ClInclude Include="VertexBuffer.h" />
   </ItemGroup>
