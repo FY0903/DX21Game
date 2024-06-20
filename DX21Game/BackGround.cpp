@@ -2,9 +2,9 @@
 #include "VertexBuffer.h"
 #include "DirectXTex/TextureLoad.h"
 #include "DirectX.h"
-#include "SpriteDrawer.h"	
+#include "SpriteDrawer.h"
 
-BackGround::BackGround() : m_pTex(nullptr), m_pVtx(nullptr), m_offsetU(0.0f)
+CBackGround::CBackGround() : m_pTex(nullptr), m_pVtx(nullptr), m_offsetU(0.0f)
 {
 	Vertex vtx[] = {
 		{{-1280.0f, -720.0f, 0.0f}, {0.0f, 0.0f}},
@@ -19,18 +19,18 @@ BackGround::BackGround() : m_pTex(nullptr), m_pVtx(nullptr), m_offsetU(0.0f)
 	}
 }
 
-BackGround::~BackGround()
+CBackGround::~CBackGround()
 {
 	if (m_pVtx) m_pVtx->Release();
 	if (m_pTex) m_pTex->Release();
 }
 
-void BackGround::Update()
+void CBackGround::Update()
 {
 	m_offsetU += 0.001f;
 }
 
-void BackGround::Draw()
+void CBackGround::Draw()
 {
 	SetSpriteUVScale(1.0f, 1.0f);
 	SetSpriteUVPos(m_offsetU, 0.0f);
