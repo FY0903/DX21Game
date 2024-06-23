@@ -19,6 +19,9 @@
     <Filter Include="ソース ファイル\object">
       <UniqueIdentifier>{38f6ca72-06f0-420c-a517-abe561e6fc11}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\scene">
+      <UniqueIdentifier>{be919553-021e-4bcb-8cb0-c8ac3ded54b0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -48,6 +51,12 @@
     <ClCompile Include="VertexBuffer.cpp">
       <Filter>ソース ファイル\system</Filter>
     </ClCompile>
+    <ClCompile Include="object.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="scene.cpp">
+      <Filter>ソース ファイル\scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -73,6 +82,12 @@
     </ClInclude>
     <ClInclude Include="VertexBuffer.h">
       <Filter>ソース ファイル\system</Filter>
+    </ClInclude>
+    <ClInclude Include="object.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="scene.h">
+      <Filter>ソース ファイル\scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
