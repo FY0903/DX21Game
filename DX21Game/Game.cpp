@@ -63,9 +63,9 @@ void UpdateGame()
 	
 	g_pCObject->Update();
 
-	if (!(g_animeFrame % 5))
+	if (!(g_animeFrame % 7))
 	{
-		if (g_frame > 480)
+		if (g_frame > 490)
 		{
 			g_pCExplotion->Update();
 		}
@@ -85,7 +85,7 @@ void UpdateGame()
 		g_animeFrame++;
 	}
 
-	if (g_frame > 570)
+	if (g_frame > 630)
 	{
 		g_pCExplotion->InitAnimeNo();
 		g_frame = 0;
@@ -102,12 +102,12 @@ void DrawGame()
 	g_pCObject->Draw();
 
 
-	if (g_frame > 300)
+	if (g_frame > 300 && g_frame < 480)
 	{
 		g_pCMissile->Draw();
 	}
 	
-	if (g_frame > 475)
+	if (g_frame > 480)
 	{
 		g_pCExplotion->Draw();
 	}

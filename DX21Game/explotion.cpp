@@ -33,13 +33,13 @@ CExplotion::CExplotion()
 
 	// 頂点バッファの作成
 	m_vtx = {
-		{{-1280.0f, -720.0f, 0.0f}, {0.0f, 0.0f}},
-		{{-1280.0f, 720.0 , 0.0f}, {0.0f, 1.0f}},
-		{{1280.0f, -720.0f, 0.0f}, {1.0f, 0.0f}},
-		{{1280.0f, 720.0f, 0.0f}, {1.0f, 1.0f}} };
+		{{-640.0f, -260.0f, 0.0f}, {0.0f, 0.0f}},
+		{{-640.0f, 460.0 , 0.0f}, {0.0f, 1.0f}},
+		{{640.0f, -260.0f, 0.0f}, {1.0f, 0.0f}},
+		{{640.0f, 460.0f, 0.0f}, {1.0f, 1.0f}} };
 
 	m_pVtxBuf = CreateVertexBuffer(m_vtx.data(), 4);
-	if (FAILED(LoadTextureFromFile(GetDevice(), "texture/Explosion.png", &m_pTex)))
+	if (FAILED(LoadTextureFromFile(GetDevice(), "texture/explosion.png", &m_pTex)))
 	{
 		MessageBox(nullptr, "テクスチャー読み込み失敗", "エラー", S_OK);
 	}
