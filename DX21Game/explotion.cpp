@@ -69,24 +69,3 @@ void CExplotion::Draw()
 	SetSpriteTexture(m_pTex);
 	DrawSprite(m_pVtxBuf, sizeof(Vertex));
 }
-
-void CExplotion::InitAnimeNo()
-{
-	m_nAnimeNo = 0;
-
-}
-
-int CExplotion::GetAnimeNo()
-{
-	return m_nAnimeNo;
-}
-
-void CExplotion::SetAnimeNo(int nAnimeNo)
-{
-	m_nAnimeNo = nAnimeNo;
-}
-
-int CExplotion::GetAnime()
-{
-	return m_uv.size();
-}

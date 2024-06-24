@@ -6,7 +6,7 @@
 class CObject
 {
 public:
-	CObject();
+	CObject(bool bAnime = false);
 	~CObject();
 	void Draw();
 
@@ -18,6 +18,8 @@ private:
 	int m_nAnimeNo{};	// åªç›ÇÃUVîzóÒÇÃî‘çÜ
 	float m_fAnimeU{};	// åªç›ÇÃUíl
 	float m_fAnimeV{};	// åªç›ÇÃVíl
+	bool m_bAnime{};
+	float m_fRad{};
 	std::vector<std::array<float, 4>> m_uv;
 	std::vector<Vertex> m_vtx;
 

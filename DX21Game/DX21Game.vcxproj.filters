@@ -57,6 +57,15 @@
     <ClCompile Include="object.cpp">
       <Filter>ソース ファイル\object</Filter>
     </ClCompile>
+    <ClCompile Include="text.cpp">
+      <Filter>ソース ファイル\object</Filter>
+    </ClCompile>
+    <ClCompile Include="lastScene.cpp">
+      <Filter>ソース ファイル\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="startScene.cpp">
+      <Filter>ソース ファイル\scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -88,6 +97,15 @@
     </ClInclude>
     <ClInclude Include="object.h">
       <Filter>ソース ファイル\object</Filter>
+    </ClInclude>
+    <ClInclude Include="text.h">
+      <Filter>ソース ファイル\object</Filter>
+    </ClInclude>
+    <ClInclude Include="lastScene.h">
+      <Filter>ソース ファイル\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="startScene.h">
+      <Filter>ソース ファイル\scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -3,11 +3,11 @@
 #include <vector>
 #include <array>
 
-class CExplotion
+class CText
 {
 public:
-	CExplotion();
-	~CExplotion();
+	CText();
+	~CText();
 	void Update();
 	void Draw();
 private:
@@ -20,3 +20,4 @@ private:
 	ID3D11Buffer* m_pVtxBuf;
 	ID3D11ShaderResourceView* m_pTex;
 };
+

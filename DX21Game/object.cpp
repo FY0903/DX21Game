@@ -2,8 +2,10 @@
 #include "DirectXTex/TextureLoad.h"
 #include "DirectX.h"
 #include "SpriteDrawer.h"
+#include "Game.h"
+#include <math.h>
 
-CObject::CObject()
+CObject::CObject(bool bAnime) : m_bAnime(bAnime)
 {
 	m_fAnimeU = 0.0f;		// åªç›ÇÃUíl
 	m_fAnimeV = 0.0f;		// åªç›ÇÃVíl
@@ -35,6 +37,13 @@ CObject::~CObject()
 
 void CObject::Draw()
 {
+	if (m_bAnime)
+	{
+		m_fRad = GetFrame() * (360.0f / 270.0f) * PI / 180.0f;
+		SetSpriteScale(1.0f, cosf(m_fRad) * 0.5f + 0.5f);
+		SetSpritePos(0.0f, 400.0f);
+	}
+
 	SetSpriteUVScale(m_uv[m_nAnimeNo][0], m_uv[m_nAnimeNo][1]);
 	SetSpriteUVPos(m_fAnimeU, m_fAnimeV);
 	SetSpriteTexture(m_pTex);

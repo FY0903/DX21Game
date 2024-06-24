@@ -44,7 +44,5 @@ private:
 	CObject* m_pCObject;
 
 	int m_nFrame{};
-	int m_nAnimeFrame{};
-	bool m_bUpdate{};
 	CutScene m_cutScene{};
 };
