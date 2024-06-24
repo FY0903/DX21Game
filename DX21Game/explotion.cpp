@@ -33,10 +33,10 @@ CExplotion::CExplotion()
 
 	// 頂点バッファの作成
 	m_vtx = {
-		{{-640.0f, -260.0f, 0.0f}, {0.0f, 0.0f}},
-		{{-640.0f, 460.0 , 0.0f}, {0.0f, 1.0f}},
-		{{640.0f, -260.0f, 0.0f}, {1.0f, 0.0f}},
-		{{640.0f, 460.0f, 0.0f}, {1.0f, 1.0f}} };
+		{{-680.0f, -260.0f, 0.0f}, {0.0f, 0.0f}},
+		{{-680.0f, 480.0 , 0.0f}, {0.0f, 1.0f}},
+		{{680.0f, -260.0f, 0.0f}, {1.0f, 0.0f}},
+		{{680.0f, 480.0f, 0.0f}, {1.0f, 1.0f}} };
 
 	m_pVtxBuf = CreateVertexBuffer(m_vtx.data(), 4);
 	if (FAILED(LoadTextureFromFile(GetDevice(), "texture/explosion.png", &m_pTex)))
@@ -53,13 +53,13 @@ CExplotion::~CExplotion()
 
 void CExplotion::Update()
 {
+	m_fAnimeU = m_uv[m_nAnimeNo][2];
+	m_fAnimeV = m_uv[m_nAnimeNo][3];
 	m_nAnimeNo++;
 	if (m_nAnimeNo > m_uv.size() - 1)
 	{
 		m_nAnimeNo = 0;
 	}
-	m_fAnimeU = m_uv[m_nAnimeNo][2];
-	m_fAnimeV = m_uv[m_nAnimeNo][3];
 }
 
 void CExplotion::Draw()

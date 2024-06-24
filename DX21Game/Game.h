@@ -12,4 +12,6 @@ void UninitGame();
 void UpdateGame();
 void DrawGame();
 
+int GetFrame();
+void SetFrame(int nFrame);
 #endif

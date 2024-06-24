@@ -8,7 +8,6 @@ class CObject
 public:
 	CObject();
 	~CObject();
-	void Update();
 	void Draw();
 
 	void InitAnimeNo();

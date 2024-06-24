@@ -36,13 +36,13 @@ CMissile::~CMissile()
 
 void CMissile::Update()
 {
+	m_fAnimeU = m_uv[m_nAnimeNo][2];
+	m_fAnimeV = m_uv[m_nAnimeNo][3];
 	m_nAnimeNo++;
 	if (m_nAnimeNo > m_uv.size() - 1)
 	{
 		m_nAnimeNo = 0;
 	}
-	m_fAnimeU = m_uv[m_nAnimeNo][2];
-	m_fAnimeV = m_uv[m_nAnimeNo][3];
 }
 
 void CMissile::Draw()

@@ -33,10 +33,6 @@ CObject::~CObject()
 	if (m_pTex) m_pTex->Release();
 }
 
-void CObject::Update()
-{
-}
-
 void CObject::Draw()
 {
 	SetSpriteUVScale(m_uv[m_nAnimeNo][0], m_uv[m_nAnimeNo][1]);

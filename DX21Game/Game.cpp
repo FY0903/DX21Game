@@ -7,6 +7,8 @@
 #include "VertexBuffer.h"
 #include "DirectXTex/TextureLoad.h"
 #include "BackGround.h"
+#include "scene.h"
+#include "startScene.h"
 #include "field.h"
 #include "missile.h"
 #include "explotion.h"
@@ -14,13 +16,8 @@
 
 //=== グローバル宣言 ===
 int g_frame = 0;		// フレームカウンタ
-int g_animeFrame = 0;	// アニメーション切り替えフレーム
 
-CBackGround* g_pCBackGround;
-CField* g_pCField;
-CMissile* g_pCMissile;
-CExplotion* g_pCExplotion;
-CObject* g_pCObject;
+CManager* g_pCManager;
 
 bool InitGame(HWND hWnd)
 {
@@ -35,86 +32,43 @@ bool InitGame(HWND hWnd)
 	// スプライト描画サポートの初期化
 	InitSpriteDrawer(GetDevice(), GetContext(), 1280, 720);
 
-	g_pCBackGround = new CBackGround();
-	g_pCField = new CField();
-	g_pCMissile = new CMissile();
-	g_pCExplotion = new CExplotion();
-	g_pCObject = new CObject();
+	g_pCManager = new CManager();
+	g_pCManager->m_pScene = new CStartScene(g_pCManager);
 
 	return true;
 }
 
 void UninitGame()
 {
-	delete(g_pCBackGround);
-	delete(g_pCField);
-	delete(g_pCMissile);
-	delete(g_pCExplotion);
-	delete(g_pCObject);
+	delete(g_pCManager);
+
 	UninitSpriteDrawer();
 	UninitDirectX();
 }
 
 void UpdateGame()
 {
-	g_pCBackGround->Update();
-	
 	g_frame++;
-	
-	g_pCObject->Update();
 
-	if (!(g_animeFrame % 7))
-	{
-		if (g_frame > 490)
-		{
-			g_pCExplotion->Update();
-		}
-	}
-	
-	if (g_animeFrame >= 60)
-	{
-		g_pCField->Update();
-		if (g_frame > 360 && g_frame < 520)
-		{
-			g_pCMissile->Update();
-		}
-		g_animeFrame = 0;
-	}
-	else
-	{
-		g_animeFrame++;
-	}
+	g_pCManager->Update();
 
-	if (g_frame > 630)
-	{
-		g_pCExplotion->InitAnimeNo();
-		g_frame = 0;
-		g_animeFrame = 0;
-	}
 }
 
 void DrawGame()
 {
 	BeginDrawDirectX();
 
-	g_pCField->Draw();
+	g_pCManager->Draw();
 
-	g_pCObject->Draw();
-
-
-	if (g_frame > 300 && g_frame < 480)
-	{
-		g_pCMissile->Draw();
-	}
-	
-	if (g_frame > 480)
-	{
-		g_pCExplotion->Draw();
-	}
-	else
-	{
-		g_pCBackGround->Draw();
-	}
-	
 	EndDrawDirectX();
+}
+
+int GetFrame()
+{
+	return g_frame;
+}
+
+void SetFrame(int nFrame)
+{
+	g_frame = nFrame;
 }

@@ -133,6 +133,8 @@
   <ItemGroup>
     <ClCompile Include="BackGround.cpp" />
     <ClCompile Include="explotion.cpp" />
+    <ClCompile Include="lastScene.cpp" />
+    <ClCompile Include="startScene.cpp" />
     <ClCompile Include="field.cpp" />
     <ClCompile Include="DirectX.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -146,6 +148,8 @@
   <ItemGroup>
     <ClInclude Include="BackGround.h" />
     <ClInclude Include="explotion.h" />
+    <ClInclude Include="lastScene.h" />
+    <ClInclude Include="startScene.h" />
     <ClInclude Include="field.h" />
     <ClInclude Include="DirectX.h" />
     <ClInclude Include="Game.h" />
