@@ -132,7 +132,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BackGround.cpp" />
-    <ClCompile Include="explotion.cpp" />
+    <ClCompile Include="explosion.cpp" />
+    <ClCompile Include="lastScene.cpp" />
+    <ClCompile Include="robo.cpp" />
+    <ClCompile Include="roboText.cpp" />
+    <ClCompile Include="startScene.cpp" />
     <ClCompile Include="field.cpp" />
     <ClCompile Include="DirectX.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -140,17 +144,26 @@
     <ClCompile Include="missile.cpp" />
     <ClCompile Include="object.cpp" />
     <ClCompile Include="SpriteDrawer.cpp" />
+    <ClCompile Include="text.cpp" />
+    <ClCompile Include="textBox.cpp" />
     <ClCompile Include="VertexBuffer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BackGround.h" />
-    <ClInclude Include="explotion.h" />
+    <ClInclude Include="explosion.h" />
+    <ClInclude Include="lastScene.h" />
+    <ClInclude Include="robo.h" />
+    <ClInclude Include="roboText.h" />
+    <ClInclude Include="startScene.h" />
     <ClInclude Include="field.h" />
     <ClInclude Include="DirectX.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="missile.h" />
     <ClInclude Include="object.h" />
+    <ClInclude Include="scene.h" />
     <ClInclude Include="SpriteDrawer.h" />
+    <ClInclude Include="text.h" />
+    <ClInclude Include="textBox.h" />
     <ClInclude Include="VertexBuffer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

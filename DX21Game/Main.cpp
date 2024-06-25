@@ -132,6 +132,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 					fpsCount = 0;
 					fpsTime = time;
 				}
+#else
+				SetWindowText(hWnd, "ニコニコ本社爆発.exe");
 #endif
 			}
 		}

@@ -2,8 +2,10 @@
 #include "DirectXTex/TextureLoad.h"
 #include "DirectX.h"
 #include "SpriteDrawer.h"
+#include "Game.h"
+#include <math.h>
 
-CObject::CObject()
+CObject::CObject(bool bAnime) : m_bAnime(bAnime)
 {
 	m_fAnimeU = 0.0f;		// 現在のU値
 	m_fAnimeV = 0.0f;		// 現在のV値
@@ -15,7 +17,7 @@ CObject::CObject()
 	// 頂点バッファの作成
 	m_vtx = {
 		{{-556.8f, -301.2f, 0.0f}, {0.0f, 0.0f}},
-		{{-556.8f, 601.2, 0.0f}, {0.0f, 1.0f}},
+		{{-556.8f, 601.2f, 0.0f}, {0.0f, 1.0f}},
 		{{556.8f, -301.2f, 0.0f}, {1.0f, 0.0f}},
 		{{556.8f, 601.2f, 0.0f}, {1.0f, 1.0f}} 
 	};
@@ -35,14 +37,27 @@ CObject::~CObject()
 
 void CObject::Update()
 {
+
 }
 
 void CObject::Draw()
 {
-	SetSpriteUVScale(m_uv[m_nAnimeNo][0], m_uv[m_nAnimeNo][1]);
-	SetSpriteUVPos(m_fAnimeU, m_fAnimeV);
-	SetSpriteTexture(m_pTex);
-	DrawSprite(m_pVtxBuf, sizeof(Vertex));
+	if (!m_bAnimeStop)
+	{
+		if (m_bAnime)
+		{
+			m_fRad = GetFrame() * (360.0f / 270.0f) * PI / 180.0f;
+			SetSpriteScale(1.0f, cosf(m_fRad) * 0.5f + 0.5f);
+			SetSpritePos(0.0f, 348.0f);
+			if (m_fRad >= PI) m_bAnimeStop = true;
+		}
+		SetSpriteAngle(0.0f);
+		SetSpriteUVScale(m_uv[m_nAnimeNo][0], m_uv[m_nAnimeNo][1]);
+		SetSpriteUVPos(m_fAnimeU, m_fAnimeV);
+		SetSpriteTexture(m_pTex);
+		DrawSprite(m_pVtxBuf, sizeof(Vertex));
+	}
+
 }
 
 void CObject::InitAnimeNo()

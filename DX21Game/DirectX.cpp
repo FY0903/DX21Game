@@ -122,7 +122,7 @@ void UninitDirectX()
 void BeginDrawDirectX()
 {
 	// 描画開始時に画面をクリア
-	float color[4] = { 0.8f, 0.9f, 0.5f, 1.0f };
+	float color[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
 	g_pContext->ClearRenderTargetView(g_pRTV, color);
 	
 	float blendFactor[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
