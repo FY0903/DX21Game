@@ -7,6 +7,13 @@
 #include "VertexBuffer.h"
 #include "DirectXTex/TextureLoad.h"
 #include "BackGround.h"
+<<<<<<< HEAD
+=======
+#include "field.h"
+#include "missile.h"
+#include "explotion.h"
+#include "object.h"
+>>>>>>> f68ad1e (06/20 20:43 繝輔ぃ繧､繝ｫ蛻・牡)
 
 //=== グローバル宣言 ===
 ID3D11Buffer* g_pVtxBufBg;
@@ -21,6 +28,7 @@ ID3D11ShaderResourceView* g_pTexMissile;
 int g_frame = 0;		// フレームカウンタ
 int g_animeFrame = 0;	// アニメーション切り替えフレーム
 
+<<<<<<< HEAD
 int g_animeBgNo = 0;		// 現在のUV配列の番号
 float g_animeBgU = 0.0f;	// 現在のU値
 float g_animeBgV = 0.0f;	// 現在のV値
@@ -64,6 +72,13 @@ float g_uvboom[][4] = {
 		{0.05f, 1.0f, 0.95f, 0.0f},
 };
 BackGround* g_pBG;
+=======
+CBackGround* g_pCBackGround;
+CField* g_pCField;
+CMissile* g_pCMissile;
+CExplotion* g_pCExplotion;
+CObject* g_pCObject;
+>>>>>>> f68ad1e (06/20 20:43 繝輔ぃ繧､繝ｫ蛻・牡)
 
 bool InitGame(HWND hWnd)
 {
@@ -78,6 +93,7 @@ bool InitGame(HWND hWnd)
 	// スプライト描画サポートの初期化
 	InitSpriteDrawer(GetDevice(), GetContext(), 1280, 720);
 
+<<<<<<< HEAD
 	// 頂点バッファの作成
 	Vertex Bg[] = { 
 		{{-1280.0f, -720.0f, 0.0f}, {0.0f, 0.0f}},
@@ -128,13 +144,28 @@ bool InitGame(HWND hWnd)
 	}
 
 	g_pBG = new BackGround();
+=======
+	g_pCBackGround = new CBackGround();
+	g_pCField = new CField();
+	g_pCMissile = new CMissile();
+	g_pCExplotion = new CExplotion();
+	g_pCObject = new CObject();
+>>>>>>> f68ad1e (06/20 20:43 繝輔ぃ繧､繝ｫ蛻・牡)
 
 	return true;
 }
 
 void UninitGame()
 {
+<<<<<<< HEAD
 	delete(g_pBG);
+=======
+	delete(g_pCBackGround);
+	delete(g_pCField);
+	delete(g_pCMissile);
+	delete(g_pCExplotion);
+	delete(g_pCObject);
+>>>>>>> f68ad1e (06/20 20:43 繝輔ぃ繧､繝ｫ蛻・牡)
 	UninitSpriteDrawer();
 	UninitDirectX();
 }
@@ -144,6 +175,11 @@ void UpdateGame()
 	g_pBG->Update();
 	
 	g_frame++;
+<<<<<<< HEAD
+=======
+	
+	g_pCObject->Update();
+>>>>>>> f68ad1e (06/20 20:43 繝輔ぃ繧､繝ｫ蛻・牡)
 
 	if (!(g_animeFrame % 5))
 	{
@@ -193,6 +229,7 @@ void DrawGame()
 {
 	BeginDrawDirectX();
 
+<<<<<<< HEAD
 	SetSpriteUVScale(g_uvbg[g_animeBgNo][0], g_uvbg[g_animeBgNo][1]);
 	SetSpriteUVPos(g_animeBgU, g_animeBgV);
 	SetSpriteTexture(g_pTexBg);
@@ -202,6 +239,12 @@ void DrawGame()
 	SetSpriteUVPos(0.0f, 0.0f);
 	SetSpriteTexture(g_pTexObj);
 	DrawSprite(g_pVtxBufObj, sizeof(Vertex));
+=======
+	g_pCField->Draw();
+>>>>>>> f68ad1e (06/20 20:43 繝輔ぃ繧､繝ｫ蛻・牡)
+
+	g_pCObject->Draw();
+
 
 	if (g_frame > 300)
 	{
