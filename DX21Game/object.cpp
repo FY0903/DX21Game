@@ -37,20 +37,20 @@ CObject::~CObject()
 
 void CObject::Update()
 {
-	if (m_bAnime)
-	{
-		m_fRad = GetFrame() * (360.0f / 270.0f) * PI / 180.0f;
-		SetSpriteScale(1.0f, cosf(m_fRad) * 0.5f + 0.5f);
-		SetSpritePos(0.0f, 400.0f);
 
-		if (m_fRad >= PI) m_bAnimeStop = true;
-	}
 }
 
 void CObject::Draw()
 {
 	if (!m_bAnimeStop)
 	{
+		if (m_bAnime)
+		{
+			m_fRad = GetFrame() * (360.0f / 270.0f) * PI / 180.0f;
+			SetSpriteScale(1.0f, cosf(m_fRad) * 0.5f + 0.5f);
+			SetSpritePos(0.0f, 348.0f);
+			if (m_fRad >= PI) m_bAnimeStop = true;
+		}
 		SetSpriteAngle(0.0f);
 		SetSpriteUVScale(m_uv[m_nAnimeNo][0], m_uv[m_nAnimeNo][1]);
 		SetSpriteUVPos(m_fAnimeU, m_fAnimeV);

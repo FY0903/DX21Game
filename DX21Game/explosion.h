@@ -3,17 +3,18 @@
 #include <vector>
 #include <array>
 
-class CExplotion
+class CExplosion
 {
 public:
-	CExplotion();
-	~CExplotion();
+	CExplosion(bool bExplosion = false);
+	~CExplosion();
 	void Update();
 	void Draw();
 private:
 	int m_nAnimeNo{};	// åªç›ÇÃUVîzóÒÇÃî‘çÜ
 	float m_fAnimeU{};	// åªç›ÇÃUíl
 	float m_fAnimeV{};	// åªç›ÇÃVíl
+	bool m_bExpolosionBig{};
 	std::vector<std::array<float, 4>> m_uv;
 	std::vector<Vertex> m_vtx;
 

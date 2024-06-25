@@ -6,6 +6,7 @@
 #include "textBox.h"
 #include "roboText.h"
 #include "field.h"
+#include "explosion.h"
 
 /**
  * @brief îöî≠å„ÇÃÉVÅ[Éìä«óù
@@ -21,6 +22,8 @@ public:
 		NICONICO,
 		ROBO,
 		END,
+		EXPLOSION,
+		CANGE,
 	};
 
 public:
@@ -44,6 +47,7 @@ private:
 	CTextBox* m_pCTextBox;
 	CRoboText* m_pCRoboText;
 	CField* m_pCField;
+	CExplosion* m_pCExplotion;
 	
 	int m_nFrame{};
 	CutScene m_cutScene{};

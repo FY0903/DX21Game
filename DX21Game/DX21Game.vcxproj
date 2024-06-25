@@ -132,7 +132,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BackGround.cpp" />
-    <ClCompile Include="explotion.cpp" />
+    <ClCompile Include="explosion.cpp" />
     <ClCompile Include="lastScene.cpp" />
     <ClCompile Include="robo.cpp" />
     <ClCompile Include="roboText.cpp" />
@@ -150,7 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BackGround.h" />
-    <ClInclude Include="explotion.h" />
+    <ClInclude Include="explosion.h" />
     <ClInclude Include="lastScene.h" />
     <ClInclude Include="robo.h" />
     <ClInclude Include="roboText.h" />

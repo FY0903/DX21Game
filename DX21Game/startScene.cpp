@@ -7,7 +7,7 @@ CStartScene::CStartScene(CManager* pManager) : CScene(pManager)
 	m_pCBackGround = new CBackGround();
 	m_pCField = new CField();
 	m_pCMissile = new CMissile();
-	m_pCExplotion = new CExplotion();
+	m_pCExplotion = new CExplosion();
 	m_pCObject = new CObject();
 }
 

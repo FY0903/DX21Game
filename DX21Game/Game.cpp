@@ -11,7 +11,7 @@
 #include "startScene.h"
 #include "field.h"
 #include "missile.h"
-#include "explotion.h"
+#include "explosion.h"
 #include "object.h"
 
 //=== ƒOƒ[ƒoƒ‹éŒ¾ ===

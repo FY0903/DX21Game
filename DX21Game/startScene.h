@@ -3,7 +3,7 @@
 #include "BackGround.h"
 #include "field.h"
 #include "missile.h"
-#include "explotion.h"
+#include "explosion.h"
 #include "object.h"
 
 /**
@@ -40,7 +40,7 @@ private:
 	CBackGround* m_pCBackGround;
 	CField* m_pCField;
 	CMissile* m_pCMissile;
-	CExplotion* m_pCExplotion;
+	CExplosion* m_pCExplotion;
 	CObject* m_pCObject;
 
 	int m_nFrame{};

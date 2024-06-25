@@ -1,9 +1,9 @@
-#include "explotion.h"
+#include "explosion.h"
 #include "DirectXTex/TextureLoad.h"
 #include "DirectX.h"
 #include "SpriteDrawer.h"
 
-CExplotion::CExplotion()
+CExplosion::CExplosion(bool bExplosion) : m_bExpolosionBig(bExplosion)
 {
 	m_nAnimeNo = 0;			// Œ»Ý‚ÌUV”z—ñ‚Ì”Ô†
 	m_fAnimeU = 0.0f;		// Œ»Ý‚ÌU’l
@@ -45,13 +45,13 @@ CExplotion::CExplotion()
 	}
 }
 
-CExplotion::~CExplotion()
+CExplosion::~CExplosion()
 {
 	if (m_pVtxBuf) m_pVtxBuf->Release();
 	if (m_pTex) m_pTex->Release();
 }
 
-void CExplotion::Update()
+void CExplosion::Update()
 {
 	m_fAnimeU = m_uv[m_nAnimeNo][2];
 	m_fAnimeV = m_uv[m_nAnimeNo][3];
@@ -62,8 +62,9 @@ void CExplotion::Update()
 	}
 }
 
-void CExplotion::Draw()
+void CExplosion::Draw()
 {
+	m_bExpolosionBig ? SetSpritePos(1000.0f, 400.0f) : SetSpritePos(0.0f, 0.0f);
 	SetSpriteUVScale(m_uv[m_nAnimeNo][0], m_uv[m_nAnimeNo][1]);
 	SetSpriteUVPos(m_fAnimeU, m_fAnimeV);
 	SetSpriteTexture(m_pTex);
