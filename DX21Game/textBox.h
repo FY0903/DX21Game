@@ -3,11 +3,11 @@
 #include <vector>
 #include <array>
 
-class CRobo
+class CTextBox
 {
 public:
-	CRobo();
-	~CRobo();
+	CTextBox();
+	~CTextBox();
 	void Update();
 	void Draw();
 private:
@@ -23,4 +23,3 @@ private:
 	ID3D11Buffer* m_pVtxBuf;
 	ID3D11ShaderResourceView* m_pTex;
 };
-

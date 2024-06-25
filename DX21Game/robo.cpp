@@ -36,36 +36,18 @@ void CRobo::Update()
 {
 	m_fSize += 0.01f;
 	if (m_fSize > 1.0f) m_fSize = 1.0f;
+	m_nFrame++;
+	m_fRad = m_nFrame * (360.0f / 100.0f) * PI / 180.0f;
+	if (m_fRad >= PI * 2) m_fRad = PI * 2;
 }
 
 void CRobo::Draw()
 {
-	m_fRad = GetFrame() * (360.0f / 300.0f) * PI / 180.0f;
 	SetSpriteAngle(m_fRad);
 	SetSpriteScale(m_fSize, m_fSize);
-	SetSpritePos(0.0f, 0.0f);
+	SetSpritePos(1000.0f, 400.0f);
 	SetSpriteUVScale(m_uv[m_nAnimeNo][0], m_uv[m_nAnimeNo][1]);
 	SetSpriteUVPos(m_fAnimeU, m_fAnimeV);
 	SetSpriteTexture(m_pTex);
 	DrawSprite(m_pVtxBuf, sizeof(Vertex));
-}
-
-void CRobo::InitAnimeNo()
-{
-	m_nAnimeNo = 0;
-}
-
-int CRobo::GetAnimeNo()
-{
-	return m_nAnimeNo;
-}
-
-void CRobo::SetAnimeNo(int nAnimeNo)
-{
-	m_nAnimeNo = nAnimeNo;
-}
-
-int CRobo::GetAnime()
-{
-	return m_uv.size();
 }

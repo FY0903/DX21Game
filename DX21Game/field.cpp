@@ -46,6 +46,9 @@ void CField::Update()
 
 void CField::Draw()
 {
+	SetSpriteAngle(0.0f);
+	SetSpritePos(0.0f, 0.0f);
+	SetSpriteScale(1.0f, 1.0f);
 	SetSpriteUVScale(m_uv[m_nAnimeNo][0], m_uv[m_nAnimeNo][1]);
 	SetSpriteUVPos(m_fAnimeU, m_fAnimeV);
 	SetSpriteTexture(m_pTex);

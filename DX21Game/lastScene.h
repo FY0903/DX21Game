@@ -3,6 +3,9 @@
 #include "object.h"
 #include "text.h"
 #include "robo.h"
+#include "textBox.h"
+#include "roboText.h"
+#include "field.h"
 
 /**
  * @brief îöî≠å„ÇÃÉVÅ[Éìä«óù
@@ -38,6 +41,9 @@ private:
 	CObject* m_pCObject;
 	CText* m_pCText;
 	CRobo* m_pCRobo;
+	CTextBox* m_pCTextBox;
+	CRoboText* m_pCRoboText;
+	CField* m_pCField;
 	
 	int m_nFrame{};
 	CutScene m_cutScene{};

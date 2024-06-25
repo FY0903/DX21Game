@@ -28,7 +28,7 @@ public:
 /**
  * @brief シーン管理クラス
  */
-class CManager
+static class CManager
 {
 public:
 	/**

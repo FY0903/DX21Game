@@ -7,7 +7,7 @@
 #define ___GAME_H___
 
 //=== 定数・マクロ定義 ===
-#define PI 3.14159265358979323846f
+#define PI 3.141592f
 
 //=== プロトタイプ宣言 ===
 bool InitGame(HWND hWnd);
