@@ -66,6 +66,9 @@
     <ClCompile Include="startScene.cpp">
       <Filter>ソース ファイル\scene</Filter>
     </ClCompile>
+    <ClCompile Include="robo.cpp">
+      <Filter>ソース ファイル\object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -106,6 +109,9 @@
     </ClInclude>
     <ClInclude Include="startScene.h">
       <Filter>ソース ファイル\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="robo.h">
+      <Filter>ソース ファイル\object</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
