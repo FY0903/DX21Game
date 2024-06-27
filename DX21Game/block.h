@@ -5,12 +5,15 @@
 #include "DirectXTex/TextureLoad.h"
 #include "DirectX.h"
 
+// 定数
+#define BLOCK_SIZE (40.0f)	// ブロックのサイズ
+
 class Block
 {
 public:
 	// ブロックの状態を表す列挙型
 	enum State {
-		IDOLE,	// 静止状態
+		IDLE,	// 静止状態
 		MOVE,	// 移動状態
 		FALL,	// 落下状態
 	};
@@ -21,6 +24,12 @@ public:
 
 	void Update();
 	void Draw();
+
+private:
+	// クラス内でしか利用しない関数
+	void UpdateIdle();
+	void UpdateMove();
+	void UpdateFall();
 
 private:
 	// 画面へ表示するのに必要なデータ

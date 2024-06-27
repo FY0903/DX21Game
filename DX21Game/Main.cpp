@@ -82,12 +82,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	}
 
 	// FPSの初期化処理
-	timeBeginPeriod(1);	// 分解能を1msに設定
-	DWORD time = timeGetTime();    // 現在の処理時間
-	DWORD oldTime = time;        // 以前に実行した時間
-	DWORD fpsCount = 0;            // FPS値計測カウンタ
-	DWORD FPS = 0;                // 直近のFPS
-	DWORD fpsTime = time;        // FPSの計測し始め
+	timeBeginPeriod(1);				// 分解能を1msに設定
+	DWORD time = timeGetTime();		// 現在の処理時間
+	DWORD oldTime = time;			// 以前に実行した時間
+	DWORD fpsCount = 0;				// FPS値計測カウンタ
+	DWORD FPS = 0;					// 直近のFPS
+	DWORD fpsTime = time;			// FPSの計測し始め
 
 	// メッセージループ
 	MSG message;
