@@ -19,6 +19,21 @@ public:
 		END,	// ゲームオーバー
 	};
 
+	// フィールド内の配列
+	struct Index
+	{
+		int x;
+		int y;
+	};
+
+	// ブロック角の配列位置
+	struct Corner
+	{
+		Index lt;	// 左上
+		Index rt;	// 右上
+		Index lb;	// 左下
+		Index rb;	// 右下
+	};
 public:
 	Field();
 	~Field();
@@ -26,12 +41,18 @@ public:
 	void Draw();
 
 private:
+	// step別更新関数
 	void UpdateCreate();
 	void UpdateWait();
 	void UpdateCheck();
 	void UpdateErase();
 	void UpdateEnd();
 
+	// 配列番号から画面上の位置を計算する関数
+	void SetGridPos(int x, int y, Block* pBlock);
+
+	// 画面上の座標から配列の位置を取得する関数
+	Corner GetGridIndex(Block* pBlock);
 private:
 	// フィールド内のブロックの情報
 	Block* m_pBlocks[FIELD_ROW][FIELD_COLUMN];

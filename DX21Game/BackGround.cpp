@@ -32,6 +32,7 @@ void BackGround::Update()
 
 void BackGround::Draw()
 {
+	SetSpritePos(0.0f, 0.0f);
 	SetSpriteUVScale(1.0f, 1.0f);
 	SetSpriteUVPos(m_offsetU, 0.0f);
 	SetSpriteTexture(m_pTex);

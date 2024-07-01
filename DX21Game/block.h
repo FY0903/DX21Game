@@ -6,7 +6,7 @@
 #include "DirectX.h"
 
 // 定数
-#define BLOCK_SIZE (40.0f)	// ブロックのサイズ
+#define BLOCK_SIZE (100.0f)	// ブロックのサイズ
 
 class Block
 {
@@ -24,6 +24,16 @@ public:
 
 	void Update();
 	void Draw();
+
+	// 状態の変更
+	void ChangeState(State state);
+
+	// 表示位置の設定
+	void SetPos(float x, float y);
+
+	// 座標を取得
+	float GetPosX();
+	float GetPosY();
 
 private:
 	// クラス内でしか利用しない関数

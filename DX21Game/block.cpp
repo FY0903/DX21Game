@@ -5,15 +5,15 @@ Block::Block() : m_pVtxBuf(nullptr), m_pTex(nullptr), m_posX(0.0f), m_posY(0.0f)
 {
 	// 頂点バッファの生成
 	Vertex vtx[] = {
-		{{-411.0f, -299.0f, 0.0f}, {0.0f, 0.0f}},
-		{{-411.0f, 299.0f, 0.0f}, {0.0f, 1.0f}},
-		{{411.0f, -299.0f, 0.0f}, {1.0f, 0.0f}},
-		{{411.0f, 299.0f, 0.0f}, {1.0f, 1.0f}},
+		{{-50.0f, -50.0f, 0.0f}, {0.0f, 0.0f}},
+		{{-50.0f, 50.0f, 0.0f}, {0.0f, 1.0f}},
+		{{50.0f, -50.0f, 0.0f}, {1.0f, 0.0f}},
+		{{50.0f, 50.0f, 0.0f}, {1.0f, 1.0f}},
 	};
 	m_pVtxBuf = CreateVertexBuffer(vtx, 4);
 
 	// テクスチャの読み込み
-	HRESULT hr = LoadTextureFromFile(GetDevice(), "T-mino.png", &m_pTex);
+	HRESULT hr = LoadTextureFromFile(GetDevice(), "p.png", &m_pTex);
 	if (FAILED(hr))
 	{
 		MessageBox(NULL, "テクスチャ読み込み失敗", "block.cpp", MB_OK);
@@ -53,6 +53,31 @@ void Block::Draw()
 	SetSpritePos(m_posX, m_posY);
 	//描画
 	DrawSprite(m_pVtxBuf, sizeof(Vertex));
+}
+
+// 状態の変更
+void Block::ChangeState(State state)
+{
+	m_state = state;
+}
+
+// 表示位置の設定
+void Block::SetPos(float x, float y)
+{
+	m_posX = x;
+	m_posY = y;
+}
+
+// 座標を取得
+float Block::GetPosX()
+{
+	return m_posX;
+}
+
+// 座標を取得
+float Block::GetPosY()
+{
+	return m_posY;
 }
 
 // IDLE状態のときの処理
